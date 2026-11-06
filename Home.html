@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>    
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Laser Flight GCS</title>
+
+        <!--Favicon-->
+        <link rel="icon" type="image/png" href="Resources/drone.svg">
+
+        <!--Icons from https://icon-sets.iconify.design/carbon/?keyword=carbon-->
+
+        <!--Icons-->
+        <link rel="stylesheet" href="icons.css">
+        <!-- Leaflet Map CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        <!--Custom CSS-->
+        <link rel="stylesheet" href="style.css">
+
+    </head>
+
+    <body class="gcs-container">
+
+        <header class="header">
+
+            <div class="logo">
+                <span class="drone drone-icon"></span>
+                <div class="stat-text">
+                    <span>LASER FLIGHT</span>
+                    <span>GCS</span>
+                </div>
+            </div>
+
+            <div class="top-stats">
+                <div class="stat-info">
+                    <span class="battery-empty stat-icon" id="battery-icon"></span>
+                    <div class="stat-text">
+                        <span class="stat-label">BATTERY:</span>
+                        <span class="stat-value" id="battery">Loading...</span>
+                    </div>
+                </div>
+
+                <div class="stat-info">
+                    <span class="no-connection-icon stat-icon" id="connection-icon"></span>
+                    <div class="stat-text">
+                        <span class="stat-label">CONNECTION:</span>
+                        <span class="stat-value" id="connection">Loading...</span>
+                    </div>
+                </div>
+
+                <div class="stat-info">
+                    <span class="mode-icon stat-icon"></span>
+                    <div class="stat-text">
+                        <span class="stat-label">MODE:</span>
+                        <span class="stat-value" id="flight-mode">Loading...</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stat-text">
+                <span class="mission-timer-label">MISSION TIME</span>
+                <span class="mission-timer-value" id="mission-timer">00:00:00</span>
+            </div>
+
+            <button class="button arm-button" id="arm-button"><span class="power arm-icon"></span><span id="arm-button-text">DISARMED</span></button>
+
+        </header>
+
+        <main class="main-grid">
+            <aside class="panel left-panel">
+                <h3>ARTIFICIAL HORIZON</h3>
+                <canvas id="pfd-canvas" class="pfd-canvas" width="200" height="200"></canvas>
+                <div class="telemetry">
+                    <div class="telemetry-block">
+                        <span class="pitch-icon"></span>
+                        <div class="telemetry-data">
+                            <span>PITCH:</span> 
+                            <span><span id="pitch-value">0.0</span>&deg</span>
+                        </div>
+                    </div>
+                    <div class="telemetry-block">
+                        <span class="roll-icon"></span>
+                        <div class="telemetry-data">
+                            <span>ROLL:</span>
+                            <span><span id="roll-value">0.0</span>&deg</span>
+                        </div>
+                    </div>
+                    <div class="telemetry-block">
+                        <span class="yaw-icon"></span>
+                        <div class="telemetry-data">
+                            <span>YAW:</span>
+                            <span><span id="yaw-value">0.0</span>&deg</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <aside class="panel center-panel">
+                <h3>MAP</h3>
+
+            </aside>
+
+            <aside class="panel right-panel">
+                <div class="camera-container">
+                    <iframe id="camera" class="camera" src=""></iframe>
+
+                    <div class="camera-overlay">
+                        <p>CAMERA</p>
+                    </div>
+                </div>
+
+                <div class="variable-display lidar">
+                    <span class="lidar-icon"></span>
+                    <div class="variable-text">
+                        <span>LIDAR DIST:</span>
+                        <span id="lidar-dist">0.0cm</span>
+                    </div>
+                </div>
+
+                <div class="variable-display lidar-temp">
+                    <span class="temperature-icon"></span>
+                    <div class="variable-text">
+                        <span>LIDAR TEMP:</span>
+                        <span><span id="lidar-temp">0.0</span>&degC</span>
+                    </div>
+                </div>
+
+                <div class="variable-display pressure">
+                    <span class="pressure-meter"></span>
+                    <div class="variable-text">
+                        <span>PRESSURE:</span>
+                        <span><span id="pressure">0.0</span>Pa</span>
+                    </div>
+                </div>
+
+                <div class="variable-display altitude">
+                    <span class="altitude-icon"></span>
+                    <div class="variable-text">
+                        <span>ALTITUDE:</span>
+                        <span><span id="altitude">0.0</span>m</span>
+                    </div>
+                </div>
+
+                <div class="data-charts">
+                    <canvas id="data-chart"></canvas>
+                </div>
+            </aside>
+
+            <aside class="panel bottom-panel">
+                <div class="console-header">
+                    <div class="console-title">
+                        <span class="terminal" style="width: 1.5em; height: 1.5em;"></span>
+                        <span>CONSOLE</span>
+                    </div>
+                    <div class="console-tags">
+                        <span class="info-tag console-tag">INFO</span>
+                        <span class="warn-tag console-tag">WARN</span>
+                        <span class="error-tag console-tag">ERROR</span>
+                    </div>
+                </div>
+            </aside>
+        </main>
+        
+        <footer class="footer">
+            <div class="footer-controls">
+                <button class="button payload-button inactive-button">
+                    <span class="arrow-up"></span>
+                    <div class="text">
+                        <span>PAYLOAD</span>
+                        <span>UP</span>
+                    </div>
+                </button>
+
+                <button class="button payload-button active-button">
+                    <span class="stop-sign"></span>
+                    <div class="text">
+                        <span>PAYLOAD</span>
+                        <span>STOP</span>
+                    </div>
+                </button>
+
+                <button class="button payload-button inactive-button">
+                    <span class="arrow-down"></span>
+                    <div class="text">
+                        <span>PAYLOAD</span>
+                        <span>DOWN</span>
+                    </div>
+                </button>
+            </div>
+
+            <div class="footer-controls">
+                <button class="button payload-button" id="timer-control">
+                    <span class="pause" id="timer-icon"></span>
+                    <div class="text">
+                        <span>TIMER</span>
+                        <span id="timer-control-text">PAUSE</span>
+                    </div>
+                </button>
+                <button class="button payload-button">
+                    <span class="stop"></span>
+                    <div class="text">
+                        <span>MISSION</span>
+                        <span>STOP</span>
+                    </div>
+                </button>
+            </div>
+
+            <div class="e-stop-outline">
+                <button class="button e-stop">
+                    <span class="warning"></span>
+                    <div class="text">
+                        <span>EMERGENCY</span>
+                        <span>STOP</span>
+                    </div>
+                </button>
+            </div>
+        </footer>
+
+        <script src="package/dist/chart.umd.js"></script>
+        <script src="dataChart.js"></script>
+        <script src="main.js"></script>
+
+    </body>
+
+</html>
