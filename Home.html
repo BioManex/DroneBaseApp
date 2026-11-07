@@ -141,9 +141,27 @@
                     </div>
                 </div>
 
+                <button class="button standard-button lidar-reading-button" id="lidar-reading">
+                    <span class="lidar-icon"></span>
+                    <div class="text">
+                        <span>LIDAR</span>
+                        <span>READING</span>
+                    </div>
+                </button>
+
                 <div class="data-charts">
                     <canvas id="data-chart"></canvas>
                 </div>
+
+                <button class="button standard-button lidar-button active-button" id="lidar-chart">
+                    <span class="lidar-icon"></span>
+                    <div class="text">LIDAR CHART</div>
+                </button>
+
+                <button class="button standard-button alt-button inactive-button" id="alt-chart">
+                    <span class="altitude-icon"></span>
+                    <div class="text">ALTITUDE CHART</div>
+                </button>
             </aside>
 
             <aside class="panel bottom-panel">
@@ -163,7 +181,7 @@
         
         <footer class="footer">
             <div class="footer-controls">
-                <button class="button payload-button inactive-button">
+                <button class="button standard-button inactive-button footer-button" id="payload-up">
                     <span class="arrow-up"></span>
                     <div class="text">
                         <span>PAYLOAD</span>
@@ -171,7 +189,7 @@
                     </div>
                 </button>
 
-                <button class="button payload-button active-button">
+                <button class="button standard-button active-button footer-button" id="payload-stop">
                     <span class="stop-sign"></span>
                     <div class="text">
                         <span>PAYLOAD</span>
@@ -179,7 +197,7 @@
                     </div>
                 </button>
 
-                <button class="button payload-button inactive-button">
+                <button class="button standard-button inactive-button footer-button" id="payload-down">
                     <span class="arrow-down"></span>
                     <div class="text">
                         <span>PAYLOAD</span>
@@ -189,14 +207,14 @@
             </div>
 
             <div class="footer-controls">
-                <button class="button payload-button" id="timer-control">
+                <button class="button standard-button footer-button" id="timer-control">
                     <span class="pause" id="timer-icon"></span>
                     <div class="text">
                         <span>TIMER</span>
                         <span id="timer-control-text">PAUSE</span>
                     </div>
                 </button>
-                <button class="button payload-button">
+                <button class="button standard-button footer-button" id="stop-mission">
                     <span class="stop"></span>
                     <div class="text">
                         <span>MISSION</span>

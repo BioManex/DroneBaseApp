@@ -8,6 +8,10 @@ let timerIcon = document.getElementById('timer-icon');
 let runTimer = true;
 let timer = 0;
 
+let payloadUpButton = document.getElementById('payload-up');
+let payloadStopButton = document.getElementById('payload-stop');
+let payloadDownButton = document.getElementById('payload-down');
+
 
 armButton.addEventListener('click', function(){
     if(armButton.classList.contains('arm-button')) {
@@ -32,7 +36,32 @@ timerControl.addEventListener('click', function(){
     }else{
         timerControlText.textContent = "START"
     }
-})
+});
+
+payloadUpButton.addEventListener('click', function(){
+    payloadUpButton.classList.add('active-button');
+    payloadDownButton.classList.remove('active-button');
+    payloadStopButton.classList.remove('active-button');
+    payloadUpButton.classList.add('inactive-button');
+    payloadDownButton.classList.add('inactive-button');
+    payloadStopButton.classList.add('inactive-button');
+});
+payloadStopButton.addEventListener('click', function(){
+    payloadUpButton.classList.remove('active-button');
+    payloadDownButton.classList.remove('active-button');
+    payloadStopButton.classList.add('active-button');
+    payloadUpButton.classList.add('inactive-button');
+    payloadDownButton.classList.add('inactive-button');
+    payloadStopButton.classList.remove('inactive-button');
+});
+payloadDownButton.addEventListener('click', function(){
+    payloadUpButton.classList.remove('active-button');
+    payloadDownButton.classList.add('active-button');
+    payloadStopButton.classList.remove('active-button');
+    payloadUpButton.classList.add('inactive-button');
+    payloadDownButton.classList.remove('inactive-button');
+    payloadStopButton.classList.add('inactive-button');
+});
 
 function convertTimerToFormated() {
     if(runTimer){
