@@ -7,6 +7,17 @@ let lidarData = [
     {x: -3, y: 10}
 ];
 
+let altitudeData = [
+    {x: 1, y:6},
+    {x: 2, y:4},
+    {x: 3, y:10},
+    {x: 4, y:8},
+    {x: 5, y:9},
+    {x: 6, y:14},
+    {x: 7, y:16},
+
+]
+
 const lidarConfig = {
     scales: {
         x: {
@@ -48,7 +59,7 @@ const lidarConfig = {
             display: false
         },
     },
-    animation: false
+    animation: true
 }
 
 const altitudeConfig = {
@@ -94,23 +105,51 @@ let chart = new Chart(
                 borderColor: '#00ffcc'
             }],
         },
-        options: lidarConfig});
+        options: lidarConfig
+    }
+);
 
 lidarChartButton.addEventListener('click', function(){
-    chart.options = lidarConfig;
-    chart.type = 'scatter';
-    chart.update();
+    if(lidarChartButton.classList.contains('inactive-button')){
+    chart.destroy();
+    chart = new Chart(
+    document.getElementById("data-chart"), {
+        type: 'scatter',
+        data: {
+            datasets: [{
+                label: 'Positions',
+                data: lidarData,
+                borderColor: '#00ffcc'
+            }],
+        },
+        options: lidarConfig}
+    );
+
     lidarChartButton.classList.add('active-button');
     lidarChartButton.classList.remove('inactive-button');
     altChartButton.classList.remove('active-button');
     altChartButton.classList.add('inactive-button');
+    }
 });
 altChartButton.addEventListener('click', function(){
-    chart.options = altitudeConfig;
-    chart.type = 'line';
-    chart.update();
+    if(altChartButton.classList.contains('inactive-button')){
+    chart.destroy();
+    chart = new Chart(
+    document.getElementById("data-chart"), {
+        type: 'line',
+        data: {
+            datasets: [{
+                label: 'Positions',
+                data: altitudeData,
+                borderColor: '#00ffcc'
+            }],
+        },
+        options: altitudeConfig}
+    );
+
     lidarChartButton.classList.remove('active-button');
     lidarChartButton.classList.add('inactive-button');
     altChartButton.classList.add('active-button');
     altChartButton.classList.remove('inactive-button');
+    }
 });
