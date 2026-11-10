@@ -12,6 +12,11 @@ let payloadUpButton = document.getElementById('payload-up');
 let payloadStopButton = document.getElementById('payload-stop');
 let payloadDownButton = document.getElementById('payload-down');
 
+let modeTile = document.getElementById('mode-tile');
+let modeIcon = document.getElementById('mode-icon');
+let modeText = document.getElementById('flight-mode');
+
+let eStopButton = document.getElementById('e-stop');
 
 armButton.addEventListener('click', function(){
     if(armButton.classList.contains('arm-button')) {
@@ -61,6 +66,12 @@ payloadDownButton.addEventListener('click', function(){
     payloadUpButton.classList.add('inactive-button');
     payloadDownButton.classList.remove('inactive-button');
     payloadStopButton.classList.add('inactive-button');
+});
+
+eStopButton.addEventListener('click', function(){
+    modeTile.classList.add('e-stop-tile-style');
+    modeIcon.classList.add('e-stop-style');
+    modeText.textContent = 'E-STOP';
 });
 
 function convertTimerToFormated() {

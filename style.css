@@ -5,7 +5,7 @@ body {
     color: #00ffcc;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     height: 100vh;
-    overflow: visible;
+    overflow: hidden;
 }
 
 button:hover {
@@ -46,13 +46,25 @@ button:hover {
 .stat-info {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     flex-direction: row;
-    gap: 10px;
+    gap: 20px;
     width: 140px;
     background: #30363d;
     padding: 8px 14px;
     border-radius: 6px;
     border: 1px solid #00ffcc;
+    color: #00ffcc;
+}
+
+.e-stop-tile-style {
+    background: #2f0000dd;
+    border-color: #ff0000;
+    color: #ff0000;
+}
+
+.e-stop-style {
+    color: #ff0000;
 }
 
 .stat-text {
@@ -64,21 +76,18 @@ button:hover {
 .stat-icon {
     width: 24px;
     height: 24px;
-    stroke: #00ffcc;
     flex-shrink: 0;
 }
 
 .stat-label {
     font-size: 11px;
     font-weight: 600;
-    color: #00ffcc;
     letter-spacing: 0.5px;
 }
 
 .stat-value {
     font-size: 16px;
     font-weight: bold;
-    color: #00ffcc;
 }
 
 .mission-timer-label {
@@ -160,6 +169,10 @@ button:hover {
     flex-direction: column;
 }
 
+.center-panel {
+    padding: 0px;
+}
+
 .right-panel {
     grid-column: 3;
     grid-row: 1 / 3;
@@ -209,6 +222,37 @@ button:hover {
     align-items: center;
     width: 50%;
 
+}
+
+.map-container {
+    padding: 1px;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.map {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+}
+
+.map-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+
+    background: #30363d;
+    padding: 5px;
+    border-radius: 6px;
+    border: #00ffcc 1px solid;
+}
+
+.leaflet-container {
+    background-color: #161b22; /* Replace with your desired color */
 }
 
 .camera-container{

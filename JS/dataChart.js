@@ -1,5 +1,6 @@
 let altChartButton = document.getElementById('alt-chart');
 let lidarChartButton = document.getElementById('lidar-chart');
+let lidarReadingButton = document.getElementById('lidar-reading');
 
 let lidarData = [
     {x: 15, y: 28},
@@ -30,7 +31,7 @@ const lidarConfig = {
             },
             border: {
                 display: true,
-                color: '#000000'
+                color: '#1f2328'
             },
             ticks: {
                 display: false
@@ -46,7 +47,7 @@ const lidarConfig = {
             },
             border: {
                 display: true,
-                color: '#000000'
+                color: '#1f2328'
             },
             ticks: {
                 display: false
@@ -84,6 +85,7 @@ const altitudeConfig = {
                 display: true,
                 color: '#000000'
             },
+            ticks: {color: '#00ffcc'}
         },
     },
     maintainAspectRatio: false,
@@ -100,7 +102,7 @@ let chart = new Chart(
         type: 'scatter',
         data: {
             datasets: [{
-                label: 'Positions',
+                label: 'Position',
                 data: lidarData,
                 borderColor: '#00ffcc'
             }],
@@ -117,7 +119,7 @@ lidarChartButton.addEventListener('click', function(){
         type: 'scatter',
         data: {
             datasets: [{
-                label: 'Positions',
+                label: 'Position',
                 data: lidarData,
                 borderColor: '#00ffcc'
             }],
@@ -129,6 +131,7 @@ lidarChartButton.addEventListener('click', function(){
     lidarChartButton.classList.remove('inactive-button');
     altChartButton.classList.remove('active-button');
     altChartButton.classList.add('inactive-button');
+    lidarReadingButton.classList.remove('inactive-button');
     }
 });
 altChartButton.addEventListener('click', function(){
@@ -139,7 +142,7 @@ altChartButton.addEventListener('click', function(){
         type: 'line',
         data: {
             datasets: [{
-                label: 'Positions',
+                label: 'Altitude',
                 data: altitudeData,
                 borderColor: '#00ffcc'
             }],
@@ -151,5 +154,6 @@ altChartButton.addEventListener('click', function(){
     lidarChartButton.classList.add('inactive-button');
     altChartButton.classList.add('active-button');
     altChartButton.classList.remove('inactive-button');
+    lidarReadingButton.classList.add('inactive-button');
     }
 });

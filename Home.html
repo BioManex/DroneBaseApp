@@ -6,16 +6,16 @@
         <title>Laser Flight GCS</title>
 
         <!--Favicon-->
-        <link rel="icon" type="image/png" href="Resources/drone.svg">
+        <link rel="icon" type="image/png" href="./Resources/drone.svg">
 
         <!--Icons from https://icon-sets.iconify.design/carbon/?keyword=carbon-->
 
         <!--Icons-->
-        <link rel="stylesheet" href="icons.css">
-        <!-- Leaflet Map CSS -->
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+        <link rel="stylesheet" href="./icons.css">
+        <!-- Leaflet Map Tool -->
+        <link rel="stylesheet" href="./Leaflet/leaflet.css">
         <!--Custom CSS-->
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="./style.css">
 
     </head>
 
@@ -48,8 +48,8 @@
                     </div>
                 </div>
 
-                <div class="stat-info">
-                    <span class="mode-icon stat-icon"></span>
+                <div id="mode-tile" class="stat-info">
+                    <span id="mode-icon" class="mode-icon stat-icon"></span>
                     <div class="stat-text">
                         <span class="stat-label">MODE:</span>
                         <span class="stat-value" id="flight-mode">Loading...</span>
@@ -96,8 +96,10 @@
             </aside>
 
             <aside class="panel center-panel">
-                <h3>MAP</h3>
-
+                <div class="map-container">
+                    <p class="map-label">MAP</p>
+                    <div class="map" id="map"></div>
+                </div>
             </aside>
 
             <aside class="panel right-panel">
@@ -224,7 +226,7 @@
             </div>
 
             <div class="e-stop-outline">
-                <button class="button e-stop">
+                <button id="e-stop" class="button e-stop">
                     <span class="warning"></span>
                     <div class="text">
                         <span>EMERGENCY</span>
@@ -234,9 +236,10 @@
             </div>
         </footer>
 
-        <script src="package/dist/chart.umd.js"></script>
-        <script src="dataChart.js"></script>
-        <script src="main.js"></script>
+        <script type="module" src="./JS/map.js"></script>
+        <script src="./package/dist/chart.umd.js"></script>
+        <script src="./JS/dataChart.js"></script>
+        <script src="./JS/main.js"></script>
 
     </body>
 
