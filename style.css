@@ -393,6 +393,7 @@ button:hover {cursor: pointer;}
     gap: 4px;
     padding: 10px;
     font-size: 13px;
+    font-family: monospace;
     border: 1px solid #30363d;
     border-radius: 4px;
     background: #000;

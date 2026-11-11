@@ -2128,7 +2128,7 @@ function capBezierPoints(points, area) {
  * necessary to avoid duplicates with `export * from './helpers`; see
  * https://github.com/microsoft/TypeScript/issues/46011
  * @typedef { import('../core/core.controller.js').default } dom.Chart
- * @typedef { import('../../types').ChartEvent } ChartEvent
+ * @typedef { import('../../types.js').ChartEvent } ChartEvent
  */ /**
  * @private
  */ function _isDomSupported() {

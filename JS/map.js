@@ -1,9 +1,8 @@
 import { LeafletMap, SimpleCRS, ImageOverlay, Icon, Marker} from "../Leaflet/leaflet.js";
 
-
-const map = new LeafletMap('map', {zoomControl: false, crs: SimpleCRS});
+const map = new LeafletMap('map', {zoomControl: false, crs: SimpleCRS, attributionControl: false});
 const bounds = [[0,0], [400,400]];
-const image = new ImageOverlay('Resources/gridImage.png', bounds).addTo(map);
+new ImageOverlay('Resources/gridImage.png', bounds).addTo(map);
 map.setView([200,200], 2);
 
 const droneIcon = new Icon({
@@ -18,4 +17,6 @@ function updateDronePosition(x, y, rotation) {
     droneMarker.setLatLng([x + 200, y + 200]);
     droneMarker.setRotation(rotation + 45);
 }
+
+
 

@@ -1,3 +1,5 @@
+import '../Chart/dist/chart.umd.js'
+
 let altChartButton = document.getElementById('alt-chart');
 let lidarChartButton = document.getElementById('lidar-chart');
 let lidarReadingButton = document.getElementById('lidar-reading');
