@@ -23,12 +23,12 @@ armButton.addEventListener('click', function(){
         armButton.classList.remove('arm-button');
         armButton.classList.add('disarm-button');
         armButtonText.textContent = "ARMED";
-        console.log('Armed Drone')
+        logToConsole('Armed Drone');
     }else{
         armButton.classList.add('arm-button');
         armButton.classList.remove('disarm-button');
         armButtonText.textContent = "DISARMED";
-        console.log('Disarmed Drone')
+        logToConsole('Disarmed Drone');
     }
 });
 
@@ -72,12 +72,13 @@ eStopButton.addEventListener('click', function(){
     modeTile.classList.add('e-stop-tile-style');
     modeIcon.classList.add('e-stop-style');
     modeText.textContent = 'E-STOP';
+    logToConsole("E-STOP ENGAGED", "error");
 });
 
 function convertTimerToFormated() {
-    if(runTimer){
-        timer++;
-    }
+    if(!runTimer) return;
+
+    timer++;
     const hours = Math.floor(timer / 3600);
     const minutes = Math.floor((timer % 3600) / 60);
     const seconds = timer % 60;
@@ -88,6 +89,26 @@ function convertTimerToFormated() {
 
     missionTimer.textContent = `${paddedHours}:${paddedMinutes}:${paddedSeconds}`;
 }
+
+function logToConsole(message, level = 'info'){
+    const output = document.getElementById('console');
+    if(!output) return;
+
+    const line = document.createElement('div');
+    line.className = `console-line ${level}`;
+
+    const timeStamp = new Date().toLocaleTimeString();
+    const tag = level.toUpperCase().padEnd(7, ' ');
+
+    line.innerText = `[${timeStamp}] [${level.toUpperCase()}] ${message}`;
+    output.appendChild(line);
+
+    output.scrollTop = output.scrollHeight;
+}
+
+const appConsole = document.querySelector('.console-output');
+const startingHeight = appConsole.offsetHeight; 
+appConsole.style.maxHeight = `${startingHeight}px`;
 
 setInterval(convertTimerToFormated, 1000);
 
