@@ -68,7 +68,7 @@
 
         <main class="main-grid">
             <aside class="panel left-panel">
-                <h3>ARTIFICIAL HORIZON</h3>
+                <p>ARTIFICIAL HORIZON</p>
                 <canvas id="pfd-canvas" class="pfd-canvas" width="200" height="200"></canvas>
                 <div class="telemetry">
                     <div class="telemetry-block">
@@ -99,6 +99,10 @@
                 <div class="map-container">
                     <p class="map-label">MAP</p>
                     <div class="map" id="map"></div>
+                    <div class="map-data"> 
+                        <div style="display: flex; flex-direction: row; justify-content: space-between;"><span>X: </span><p><span id="x-pos">0.0</span>m</p></div>
+                        <div style="display: flex; flex-direction: row; justify-content: space-between;"><span>Y: </span><p><span id="y-pos">0.0</span>m</p></div>
+                    </div>
                 </div>
             </aside>
 

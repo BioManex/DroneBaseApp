@@ -239,6 +239,24 @@ button:hover {cursor: pointer;}
     border: #00ffcc 1px solid;
 }
 
+.map-data {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 1000;
+
+    background: #30363d;
+    padding: 5px;
+    border-radius: 6px;
+    border: #00ffcc 1px solid;
+
+    width: 20%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .leaflet-container {background-color: #161b22;}
 
 .camera-container{
